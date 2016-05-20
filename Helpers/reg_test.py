@@ -1,6 +1,7 @@
 
 import regex
 from datetime import datetime as dt
+from Helpers import *
 
 
 src = '中文名,胡锦涛,国    籍,中国,民    族,汉族,出生地,江苏泰州,出生日期,1942年12月,毕业院校,清华大学出生日期,1946年11月,' \
@@ -17,35 +18,9 @@ p = regex.compile(r'，,')
 match = p.sub(repl='', string=ss)
 
 
-def para_test(*args):
-    args = args[0]
-    print(type(args))
-    print(args)
-    return ['haha']
-    yield ('hehe')
+class TT:
+    @classmethod
+    def name(cls):
+        return cls.__name__
 
-
-class Tr:
-    def __init__(self, func):
-        self.func = func
-
-    def __call__(self, *args, **kwargs):
-        print(args)
-        args = (3, 4, 5)
-        self.func(*args)
-
-
-@Tr
-def spam(*args):
-    print('spam: ', args)
-    c = 0
-    for i in args:
-        c += i
-    print(c)
-
-
-def para(*args):
-    print(args)
-
-t = (2, 3, 4)
-para(*t)
+print(config['entity']['Person'])

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="218675344">
+    <data-source source="LOCAL" name="CrawlDev - postgres@localhost" uuid="152a1ceb-90d2-4381-ae1d-bf156289a313">
+      <driver-ref>postgresql</driver-ref>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://9.125.145.72:5432/crawl_dev</jdbc-url>
+    </data-source>
+  </component>
+</project>

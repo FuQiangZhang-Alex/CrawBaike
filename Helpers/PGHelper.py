@@ -1,6 +1,6 @@
 
 import postgresql
-import configparser
+from Helpers import *
 
 
 class PG:
@@ -16,8 +16,6 @@ class PG:
         :param section_name: section name in the configuration file where the db connection information stored
         :return: nothing
         """
-        config = configparser.ConfigParser()
-        config.read(config_path, encoding='utf-8')
         self.host = config[section_name]['host']
         self.port = config[section_name]['port']
         self.db = config[section_name]['db']
@@ -53,11 +51,13 @@ class PG:
         print(parameters)
         ps = self.connection.prepare(sql)
         rs = ps(*parameters)
-        print(rs)
+        return rs
 
     def load(self, entities=None, tbl_name=None):
         for entity in entities:
             print(entity)
+
+        ps = self.connection.prepare('')
 
 # pg = PG()
 # pp = pg.prepare('select * FROM CRAWL.TEST')

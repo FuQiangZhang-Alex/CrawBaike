@@ -19,4 +19,3 @@ class CrawlSpider:
         parser = etree.HTMLParser()
         tree = etree.parse(BytesIO(res.data), parser=parser)
         return callback(tree)
-        pass

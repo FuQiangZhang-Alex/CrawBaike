@@ -4,6 +4,7 @@ from Items.Person import Person
 import regex
 from Helpers.PGHelper import PG
 from datetime import datetime as dt
+from Helpers import *
 
 
 persons = []
@@ -28,7 +29,8 @@ def extractor():
         person = extract_info_from_politician(politician, name, source_url)
         # persons.append(person)
         # save person into database
-        person.test(db_helper=pg.save)
+        person.save(db_helper=pg.save, tbl_name=config['entity'][person.name()])
+        print(person)
         print()
 
 
@@ -100,6 +102,13 @@ def extract_info_from_politician(content_list=None, name=None, source_url=None):
 
         # create date
         person['CREATEDATE'] = dt.now().date()
+
+        # extract political experience
+        # first, extract date duration
+        date_duration = reg_dict['date_duration'].search(line_str)
+        if date_duration:
+            duration_line = date_duration.captures()
+            print(line_str)
 
     return person
 

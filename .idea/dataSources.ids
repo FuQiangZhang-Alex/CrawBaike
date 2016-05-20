@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="CrawlDev - postgres@localhost" uuid="152a1ceb-90d2-4381-ae1d-bf156289a313">
+    <database-info product="PostgreSQL" version="9.4.5" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.5">
+      <database id="1" name="crawl_dev"/>
+      <schema id="2" parent="1" name="public">
+        <object-id>2200</object-id>
+        <comment>standard public schema</comment>
+        <introspection-timestamp>2016-05-20.10:17:28.763</introspection-timestamp>
+      </schema>
+      <schema id="3" parent="1" name="crawl">
+        <object-id>16409</object-id>
+        <introspection-state-number>1932</introspection-state-number>
+        <introspection-timestamp>2016-05-20.10:18:05.087</introspection-timestamp>
+      </schema>
+      <table id="4" parent="3" name="employment">
+        <object-id>16498</object-id>
+        <state-number>1932</state-number>
+        <with-oids>1</with-oids>
+      </table>
+      <table id="5" parent="3" name="organization">
+        <object-id>16490</object-id>
+        <state-number>1931</state-number>
+        <with-oids>1</with-oids>
+      </table>
+      <table id="6" parent="3" name="person">
+        <object-id>16482</object-id>
+        <state-number>1930</state-number>
+        <with-oids>1</with-oids>
+      </table>
+      <table id="7" parent="3" name="test">
+        <object-id>16457</object-id>
+        <state-number>1907</state-number>
+        <with-oids>1</with-oids>
+      </table>
+      <column id="8" parent="4" name="personid">
+        <state-number>1932</state-number>
+        <data-type>integer</data-type>
+      </column>
+      <column id="9" parent="4" name="organizationid">
+        <state-number>1932</state-number>
+        <data-type>integer</data-type>
+      </column>
+      <column id="10" parent="4" name="startdate">
+        <state-number>1932</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="11" parent="4" name="enddate">
+        <state-number>1932</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="12" parent="4" name="location">
+        <state-number>1932</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="13" parent="4" name="position">
+        <state-number>1932</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="14" parent="4" name="tag">
+        <state-number>1932</state-number>
+        <data-type>text[]</data-type>
+      </column>
+      <column id="15" parent="4" name="creator">
+        <state-number>1932</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="16" parent="4" name="createdate">
+        <state-number>1932</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="17" parent="4" name="lastmodifydate">
+        <state-number>1932</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="18" parent="4" name="modifier">
+        <state-number>1932</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="19" parent="4" name="audituser">
+        <state-number>1932</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="20" parent="4" name="auditdate">
+        <state-number>1932</state-number>
+        <data-type>date</data-type>
+      </column>
+      <index id="21" parent="4" name="employment_pkey">
+        <object-id>16504</object-id>
+        <columns>oid</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="22" parent="4" name="employment_pkey">
+        <columns>oid</columns>
+        <underlying-index>employment_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+      <column id="23" parent="5" name="organizationname">
+        <state-number>1931</state-number>
+        <data-type>text</data-type>
+      </column>
+      <column id="24" parent="5" name="alias">
+        <state-number>1931</state-number>
+        <data-type>text</data-type>
+      </column>
+      <column id="25" parent="5" name="typeid">
+        <state-number>1931</state-number>
+        <data-type>integer</data-type>
+      </column>
+      <column id="26" parent="5" name="regloc">
+        <state-number>1931</state-number>
+        <data-type>text</data-type>
+      </column>
+      <column id="27" parent="5" name="regdate">
+        <state-number>1931</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="28" parent="5" name="enddate">
+        <state-number>1931</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="29" parent="5" name="tag">
+        <state-number>1931</state-number>
+        <data-type>text[]</data-type>
+      </column>
+      <column id="30" parent="5" name="ipocode">
+        <state-number>1931</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="31" parent="5" name="ipodate">
+        <state-number>1931</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="32" parent="5" name="remark">
+        <state-number>1931</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="33" parent="5" name="creator">
+        <state-number>1931</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="34" parent="5" name="createdate">
+        <state-number>1931</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="35" parent="5" name="lastmodifydate">
+        <state-number>1931</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="36" parent="5" name="modifier">
+        <state-number>1931</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="37" parent="5" name="audituser">
+        <state-number>1931</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="38" parent="5" name="auditdate">
+        <state-number>1931</state-number>
+        <data-type>date</data-type>
+      </column>
+      <index id="39" parent="5" name="organization_pkey">
+        <object-id>16496</object-id>
+        <columns>oid</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="40" parent="5" name="organization_pkey">
+        <columns>oid</columns>
+        <underlying-index>organization_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+      <column id="41" parent="6" name="name">
+        <state-number>1930</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="42" parent="6" name="alias">
+        <state-number>1930</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="43" parent="6" name="englishname">
+        <state-number>1930</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="44" parent="6" name="gender">
+        <state-number>1930</state-number>
+        <data-type>char</data-type>
+      </column>
+      <column id="45" parent="6" name="birthday">
+        <state-number>1930</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="46" parent="6" name="age">
+        <state-number>1930</state-number>
+        <data-type>integer</data-type>
+      </column>
+      <column id="47" parent="6" name="hometown">
+        <state-number>1930</state-number>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="48" parent="6" name="tag">
+        <state-number>1930</state-number>
+        <data-type>text[]</data-type>
+      </column>
+      <column id="49" parent="6" name="audituser">
+        <state-number>1930</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="50" parent="6" name="auditdate">
+        <state-number>1930</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="51" parent="6" name="creator">
+        <state-number>1930</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="52" parent="6" name="createdate">
+        <state-number>1930</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="53" parent="6" name="lastmodifydate">
+        <state-number>1930</state-number>
+        <data-type>date</data-type>
+      </column>
+      <column id="54" parent="6" name="modifier">
+        <state-number>1930</state-number>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="55" parent="6" name="sourceurl">
+        <state-number>1930</state-number>
+        <data-type>text</data-type>
+      </column>
+      <index id="56" parent="6" name="person_pkey">
+        <object-id>16488</object-id>
+        <columns>oid</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="57" parent="6" name="person_pkey">
+        <columns>oid</columns>
+        <underlying-index>person_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+      <column id="58" parent="7" name="name">
+        <state-number>1907</state-number>
+        <data-type>text</data-type>
+      </column>
+      <column id="59" parent="7" name="role">
+        <state-number>1907</state-number>
+        <data-type>varchar(2)</data-type>
+      </column>
+      <index id="60" parent="7" name="test_pkey">
+        <object-id>16463</object-id>
+        <columns>oid</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="61" parent="7" name="test_pkey">
+        <columns>oid</columns>
+        <underlying-index>test_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>

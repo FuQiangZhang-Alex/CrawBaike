@@ -1,15 +1,15 @@
 
 from Spiders.CrawlSpider import CrawlSpider
 import urllib3
-import configparser
+from .. import *
 
 
 class PoliticianExtractor:
     # store all politicians given by the configuration file
     politicians = {}
 
-    def __init__(self, config_file='../config.ini'):
-        self.config_file = config_file
+    def __init__(self):
+        pass
 
     @staticmethod
     def process_line(line):
@@ -79,9 +79,7 @@ class PoliticianExtractor:
         return politician
 
     def info_dict(self):
-        conf = configparser.ConfigParser()
-        conf.read(self.config_file, encoding='utf-8')
-        names = conf['politicians']['names']
+        names = CONFIGURATION[CONFIG_SECTION_POLITICIAN_NAMES]['names']
         names = str(names).split(',')
         h = 'baike.baidu.com'
         sp = CrawlSpider(host=h)

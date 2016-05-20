@@ -4,7 +4,7 @@ from Items.Person import Person
 import regex
 from Helpers.PGHelper import PG
 from datetime import datetime as dt
-from Helpers import *
+from .. import *
 
 
 persons = []
@@ -38,8 +38,8 @@ def extractor():
         source_url = str(key).split(';')[1]  # get source URL
         person = extract_info_from_politician(politician, name, source_url)
         # persons.append(person)
-        status = person.save(db_helper=pg.save, tbl_name=config['entity'][person.name()])  # save person into database
-        print(status)
+        pg.save_entity(entity=person, tbl_name=CONFIGURATION[CONFIG_SECTION_ENTITY][person.name()])
+        # print(person)
         print()
 
 
@@ -48,7 +48,7 @@ def extract_info_from_politician(content_list=None, name=None, source_url=None):
         return None
     politician = list(content_list.copy())
     reg_dict = {
-        'date_duration': regex.compile(r'[12]\d{3}[—－][12]\d{3}'),
+        'date_duration': regex.compile(r'[12]\d{3}[—－]([12]\d{3})?'),
         'birthday': regex.compile(r'(?<=出生日期.)\d{4}年\d{1,2}月'),
         'alias': regex.compile(r'(?<=别    名,).+?(?=,)'),
         'english_name': regex.compile(r'(?<=英文名,).+?(?=,)'),
@@ -111,7 +111,10 @@ def extract_info_from_politician(content_list=None, name=None, source_url=None):
         # first, extract date duration
         date_duration = reg_dict['date_duration'].search(line_str)
         if date_duration:
-            duration_line = date_duration.captures()
+            duration_line = date_duration.captures()[0]
+            experience = regex.compile(r'([12]\d{3}[—－]([12]\d{3})?)(.+$)')
+            # print(duration_line)
+            print(duration_line, experience.search(line_str).groups()[2].lstrip('年'))
             # print(line_str)
     return person
 

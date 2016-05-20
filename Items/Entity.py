@@ -24,19 +24,3 @@ class Entity(dict):
 
     def keys(self):
         pass
-
-    def save(self, db_helper=None, tbl_name=None):
-        """
-        save person entity into specified database
-        :param db_helper: db helper instance used to write person entity into specified database
-        :param tbl_name: full quanlified table name
-        :return: True if success else False
-        """
-        status = db_helper(entity=self, tbl_name=tbl_name)
-        if status:
-            return True
-        else:
-            return False
-
-    def delete(self, db_helper=None, tbl_name=None):
-        pass

@@ -1,6 +1,6 @@
 
 import postgresql
-from Helpers import *
+from .. import *
 
 
 class PG:
@@ -9,17 +9,17 @@ class PG:
     communicate with PostgreSQL database
     execute select, insert, update, delete operation(s)
     """
-    def __init__(self, section_name='postgresql'):
+    def __init__(self):
         """
         initialize PostgreSQL helper
         :param section_name: section name in the configuration file where the db connection information stored
         :return: nothing
         """
-        self.host = config[section_name]['host']
-        self.port = config[section_name]['port']
-        self.db = config[section_name]['db']
-        self.user = config[section_name]['user']
-        self.password = config[section_name]['password']
+        self.host = CONFIGURATION[CONFIG_SECTION_PG]['host']
+        self.port = CONFIGURATION[CONFIG_SECTION_PG]['port']
+        self.db = CONFIGURATION[CONFIG_SECTION_PG]['db']
+        self.user = CONFIGURATION[CONFIG_SECTION_PG]['user']
+        self.password = CONFIGURATION[CONFIG_SECTION_PG]['password']
         self.connection = postgresql.open('pq://' + self.user + ':' + self.password + '@' + self.host + ':' +
                                           self.port + '/' + self.db)
 
@@ -53,7 +53,7 @@ class PG:
         else:
             return False
 
-    def save(self, entity=None, tbl_name=None):
+    def save_entity(self, entity=None, tbl_name=None):
         """
         save an entity into database
         :param entity: entity to save
@@ -64,15 +64,11 @@ class PG:
             return -1
         sql = r'INSERT INTO ' + tbl_name + '('
         values = 'VALUES('
-        columns = entity.keys()
         para_number = 1
         parameters = []
-        for column in columns:
-            if column in entity:
-                parameters.append(entity[column])
-            else:
-                parameters.append(None)
-            sql += str(column) + ','
+        for key in entity.keys():
+            parameters.append(entity[key])
+            sql += str(key) + ','
             values += '$' + str(para_number) + ','
             para_number += 1
         parameters = tuple(parameters)
@@ -82,7 +78,7 @@ class PG:
         rs = ps(*parameters)
         return rs
 
-    def load(self, entities=None, tbl_name=None):
+    def load_entities(self, entities=None, tbl_name=None):
         """
         load entities into database
         :param entities: entities to load

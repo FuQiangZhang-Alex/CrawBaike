@@ -23,4 +23,4 @@ class TT:
     def name(cls):
         return cls.__name__
 
-print(config['entity']['Person'])
+print(type(config))

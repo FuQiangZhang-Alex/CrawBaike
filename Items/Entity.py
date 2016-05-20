@@ -8,6 +8,9 @@ class Entity(dict):
     def name(cls):
         return cls.__name__
 
+    def __getitem__(self, item):
+        return self.get(item, None)
+
     def __str__(self):
         _str = ''
         for key in self.keys():

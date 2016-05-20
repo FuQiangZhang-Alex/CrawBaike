@@ -7,12 +7,11 @@ class PG:
     """
     PostgreSQL helper
     communicate with PostgreSQL database
-    select, insert, update, delete operation
+    execute select, insert, update, delete operation(s)
     """
-    def __init__(self, config_path='../config.ini', section_name='postgresql'):
+    def __init__(self, section_name='postgresql'):
         """
         initialize PostgreSQL helper
-        :param config_path: configuration file in which the database connection information stored
         :param section_name: section name in the configuration file where the db connection information stored
         :return: nothing
         """
@@ -25,10 +24,42 @@ class PG:
                                           self.port + '/' + self.db)
 
     def prepare(self, sql):
+        """
+        prepare a statement based on the input sql statement
+        :param sql: sql statement
+        :return: a Statement object which is callable
+        """
         ps = self.connection.prepare(sql)
         return ps
 
+    def execute(self, sql=None, parameters=None):
+        """
+        execute specified sql
+        :param sql: sql statement
+        :param parameters: sql parameter(s)
+        :return: status of the execution
+        """
+        if sql is None:
+            return False
+        ps = self.prepare(sql)
+        rs = False
+        if parameters:
+            parameters = tuple(parameters)
+            rs = ps(*parameters)
+        else:
+            rs = ps()
+        if rs:
+            return True
+        else:
+            return False
+
     def save(self, entity=None, tbl_name=None):
+        """
+        save an entity into database
+        :param entity: entity to save
+        :param tbl_name: table name associate with the entity
+        :return: execution results list
+        """
         if entity is None or tbl_name is None:
             return -1
         sql = r'INSERT INTO ' + tbl_name + '('
@@ -47,26 +78,18 @@ class PG:
         parameters = tuple(parameters)
         values = values.rstrip(',') + ')'
         sql = sql.rstrip(',') + ') ' + values
-        print(sql)
-        print(parameters)
         ps = self.connection.prepare(sql)
         rs = ps(*parameters)
         return rs
 
     def load(self, entities=None, tbl_name=None):
+        """
+        load entities into database
+        :param entities: entities to load
+        :param tbl_name: table name associate with these entities
+        :return: execution results list
+        """
         for entity in entities:
             print(entity)
 
         ps = self.connection.prepare('')
-
-# pg = PG()
-# pp = pg.prepare('select * FROM CRAWL.TEST')
-# print(pp())
-
-
-# insert_test = pg.statement('INSERT INTO CRAWL.TEST VALUES($1, $2)')
-# persons = [{'name': 'Alice', 'role': 'AA'}, {'name': 'Bob', 'role': 'AA'}, {'name': 'Cindy', 'role': 'AA'}]
-# for person in persons:
-#     insert_test(person['name'], person['role'])
-# pp = pg.statement('select * FROM CRAWL.TEST')
-# print(pp())

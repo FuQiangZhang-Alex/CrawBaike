@@ -1,5 +1,9 @@
 
 class Entity(dict):
+    """
+    get class name
+    :return name of this class
+    """
     @classmethod
     def name(cls):
         return cls.__name__
@@ -30,3 +34,6 @@ class Entity(dict):
             return True
         else:
             return False
+
+    def delete(self, db_helper=None, tbl_name=None):
+        pass

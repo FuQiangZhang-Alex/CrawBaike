@@ -11,6 +11,11 @@ persons = []
 
 
 def list2str(lst):
+    """
+    convert list items to string
+    :param lst: list to be converted
+    :return: list's items' string separated by ','
+    """
     _lst_str = ''
     for item in lst:
         _lst_str += str(item) + ','
@@ -18,19 +23,23 @@ def list2str(lst):
 
 
 def extractor():
+    """
+    extract politician basic information from crawled html page
+    save politician directly into database
+    :return: nothing
+    """
     bs = PoliticianExtractor(config_file='../config.ini')
     politician_dict = bs.info_dict()
     pg = PG()
     for key in politician_dict.keys():
         print('###########################', key, '###########################')
-        politician = politician_dict[key]
-        name = str(key).split(';')[0]
-        source_url = str(key).split(';')[1]
+        politician = politician_dict[key]  # a single politician
+        name = str(key).split(';')[0]  # get politician name
+        source_url = str(key).split(';')[1]  # get source URL
         person = extract_info_from_politician(politician, name, source_url)
         # persons.append(person)
-        # save person into database
-        person.save(db_helper=pg.save, tbl_name=config['entity'][person.name()])
-        print(person)
+        status = person.save(db_helper=pg.save, tbl_name=config['entity'][person.name()])  # save person into database
+        print(status)
         print()
 
 
@@ -47,18 +56,13 @@ def extract_info_from_politician(content_list=None, name=None, source_url=None):
         'hometown': regex.compile(r'((?<=籍    贯,).+?(?=,))|((?<=出生地,).+?(?=,))'),
         'tag': regex.compile(r'(?<=词条标签：,).+$')
     }
-    # politician entity
-    person = Person()
-
-    # politician name
-    person['NAME'] = name
-
-    # source url
-    person['SOURCEURL'] = source_url
-
+    person = Person()  # politician entity
+    person['NAME'] = name  # politician name
+    person['SOURCEURL'] = source_url  # source url
+    # process each line to extract other information
     for line in politician:
         line_str = str(list2str(line))
-        # print(line_str)
+
         # extract birthday
         birthday = reg_dict['birthday'].search(line_str)
         if birthday:
@@ -108,8 +112,7 @@ def extract_info_from_politician(content_list=None, name=None, source_url=None):
         date_duration = reg_dict['date_duration'].search(line_str)
         if date_duration:
             duration_line = date_duration.captures()
-            print(line_str)
-
+            # print(line_str)
     return person
 
 extractor()

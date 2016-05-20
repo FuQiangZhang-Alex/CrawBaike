@@ -1,5 +1,5 @@
 
-from Spiders.BaikeSpider import PoliticianExtractor
+from Spiders.PoliticianExtractor import PoliticianExtractor
 from Items.Person import Person
 import regex
 from Helpers.PGHelper import PG
@@ -28,7 +28,7 @@ def extractor():
     save politician directly into database
     :return: nothing
     """
-    bs = PoliticianExtractor(config_file='../config.ini')
+    bs = PoliticianExtractor()
     politician_dict = bs.info_dict()
     pg = PG()
     for key in politician_dict.keys():
